@@ -1,5 +1,5 @@
 require('dotenv').config();
-const express = require('express');
+const express = require('express'),
       app = express(),
       massive = require('massive'),
       session = require('express-session'),
@@ -34,3 +34,4 @@ app.get('/auth/logout', authCtrl.logout);
 //User Endpoints
 app.put('/auth/user/:id', mainCtrl.updateEmail);
 app.delete('/auth/user/:id', mainCtrl.delete);
+app.get('/auth/history/:id', mainCtrl.getRentalHistory);

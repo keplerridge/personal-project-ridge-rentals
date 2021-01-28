@@ -7,7 +7,8 @@ CREATE TABLE users(
 CREATE TABLE rental_equipment(
     equipment_id SERIAL PRIMARY KEY,
     equipment_picture TEXT,
-    equipment_description TEXT
+    equipment_description TEXT,
+    name VARCHAR(100)
 );
 
 CREATE TABLE rental_history(
