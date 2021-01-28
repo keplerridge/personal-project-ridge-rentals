@@ -14,5 +14,5 @@ CREATE TABLE rental_history(
     id SERIAL PRIMARY KEY,
     renter_id INT REFERENCES users(user_id),
     equipment_id INT REFERENCES rental_equipment(equipment_id),
-    rental_date TIMESTAMP
+    rental_date DATE DEFAULT current_date
 );
