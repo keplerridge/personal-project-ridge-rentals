@@ -12,6 +12,7 @@ class Profile extends Component {
             email: '',
             verEmail: ''
         }
+        
     }
 
     getRentalHistory = () => {
@@ -31,7 +32,7 @@ class Profile extends Component {
 
         if(email && email === verEmail){
             return( 
-                axios.put(`/auth/user/${this.props.users.user_id}`, {email: this.state.email})
+                axios.put(`/auth/user/${this.props.user.user_id}`, {email: this.state.email})
                 .then(res => {
                     this.props.getUser(res.data[0])
                     this.editView()
@@ -44,6 +45,10 @@ class Profile extends Component {
     }
 
     componentDidMount(){
+        if(!this.props.user.email){
+            this.props.history.push('/')
+            alert('Plese login or register to view your profile')
+        }
         this.getRentalHistory();
     }
 
@@ -51,11 +56,11 @@ class Profile extends Component {
         this.setState({editView: !this.state.editView})
     }
 
-    logout(){
+    logout = () => {
         axios.get('auth/logout')
         .then(() => {
             this.props.clearUser()
-            this.props.push('/')
+            this.props.history.push('/')
         })
         .catch(err => console.log(err))
     }
@@ -86,7 +91,7 @@ class Profile extends Component {
                                 placeholder='New Email'
                                 onChange={e => this.handleChange(e)} />
                         <input
-                                value={this.state.email}
+                                value={this.state.verEmail}
                                 name='verEmail'
                                 placeholder='Confirm New Email'
                                 onChange={e => this.handleChange(e)} />
@@ -95,10 +100,12 @@ class Profile extends Component {
                 ) : (
                     <div>
                         <h4>Account Email Address</h4>
-                        <p></p>
-                        <span>Click Here to Change</span>
+                        <p>{this.props.user.email}</p>
+                        <p>Click Here to <span onClick={this.editView}>Change Email</span></p>
+                        <span>Click Here to Update Password</span>
                     </div>
                 )}
+                <button onClick={this.logout}>Logout</button>
             </div>
         )
     }
@@ -106,4 +113,4 @@ class Profile extends Component {
 
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps, {getUser})(Profile);
+export default connect(mapStateToProps, {getUser, clearUser})(Profile);

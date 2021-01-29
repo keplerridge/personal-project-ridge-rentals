@@ -14,6 +14,13 @@ class Auth extends Component {
         }
     }
 
+    componentDidMount(){
+        if(this.props.user.user_id){
+            this.props.history.push('/')
+            alert('Already logged in, please logout before trying to login in to another account')
+        }
+    }
+
     handleInput = (event) => {
         this.setState({[event.target.name]: event.target.value})
     }
@@ -101,4 +108,6 @@ class Auth extends Component {
     }
 }
 
-export default connect(null, {getUser})(Auth);
+const mapStateToProps = reduxState => reduxState;
+
+export default connect(mapStateToProps, {getUser})(Auth);
