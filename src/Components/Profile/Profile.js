@@ -15,6 +15,15 @@ class Profile extends Component {
         
     }
 
+    componentDidMount(){
+        if(!this.props.user.email){
+                this.props.history.push('/')
+                alert('Plese login or register to view your')
+        } else {
+            this.getRentalHistory();
+        }
+    }
+
     getRentalHistory = () => {
         axios.get(`/auth/history/${this.props.user_id}`)
         .then(res => {
@@ -42,14 +51,6 @@ class Profile extends Component {
             )
         }   
         return alert('Email addresses do not match')
-    }
-
-    componentDidMount(){
-        if(!this.props.user.email){
-            this.props.history.push('/')
-            alert('Plese login or register to view your profile')
-        }
-        this.getRentalHistory();
     }
 
     editView = () => {
@@ -85,6 +86,7 @@ class Profile extends Component {
                 ? (
                     <div>
                         <h4>Change Email Address</h4>
+                        <p>{this.props.user.email}</p>
                         <input
                                 value={this.state.email}
                                 name='email'

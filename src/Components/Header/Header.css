@@ -1,0 +1,39 @@
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    background-color: black;
+}
+
+header img {
+    position: absolute;
+    left: 15px;
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+header h1 {
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgb(39, 184, 184);
+    font-size: 65px;
+}
+
+.nav {
+    position: absolute;
+    right: 20px;
+
+}
+
+#link {
+    margin-left: 10px;
+    margin-right: 10px;
+    color: rgb(39, 184, 184);
+    text-decoration: none;
+}

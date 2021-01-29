@@ -35,8 +35,13 @@ class Auth extends Component {
         if(password && password === verPassword) {
             axios.post('/auth/register', {email, password})
             .then(res => {
-                this.props.getUser(res.data)
-                this.props.history.push('/profile')
+                console.log(res.data)
+                if(res.data === 'Email already in use, please use another'){
+                    return alert(res.data)
+                } else {
+                    this.props.getUser(res.data)
+                    this.props.history.push('/profile')
+                }
             })
             .catch(err => console.log(err))
         } else {
@@ -56,7 +61,7 @@ class Auth extends Component {
     }
 
     render(){
-        console.log(this.props)
+        // console.log(this.props)
         return(
             <div>
                 <section>
@@ -111,3 +116,6 @@ class Auth extends Component {
 const mapStateToProps = reduxState => reduxState;
 
 export default connect(mapStateToProps, {getUser})(Auth);
+
+// this.props.getUser(res.data)
+//                 this.props.history.push('/profile')
