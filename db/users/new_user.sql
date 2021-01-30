@@ -5,3 +5,4 @@ INSERT INTO users(
     $1,
     $2
 )
+RETURNING user_id, email;

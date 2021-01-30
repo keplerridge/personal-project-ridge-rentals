@@ -7,7 +7,7 @@ module.exports = {
 
         const [founduser] = await db.users.check_user([email]);
         if(founduser){
-            return res.status(400).send('Email already in use, please use another')
+            return res.status(400).send('Email already in use, please login or use another email address')
         }
 
         let salt = bcrypt.genSaltSync(10);

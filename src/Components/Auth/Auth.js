@@ -35,15 +35,15 @@ class Auth extends Component {
         if(password && password === verPassword) {
             axios.post('/auth/register', {email, password})
             .then(res => {
-                console.log(res.data)
-                if(res.data === 'Email already in use, please use another'){
-                    return alert(res.data)
-                } else {
-                    this.props.getUser(res.data)
-                    this.props.history.push('/profile')
-                }
+                this.props.getUser(res.data)
+                console.log(this.props.user)
+                this.props.history.push('/')
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                alert('Email already in use, please login or select another')
+                this.setState({email: '', password: '', verPassword: ''})
+            })
         } else {
             alert('Passwords do not match')
         }
@@ -57,11 +57,14 @@ class Auth extends Component {
             this.props.getUser(res.data)
             this.props.history.push('/profile')
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err)
+            alert('Email or password incorrect')
+            this.setState({email: '', password: ''})
+        })
     }
 
     render(){
-        // console.log(this.props)
         return(
             <div>
                 <section>
@@ -117,5 +120,3 @@ const mapStateToProps = reduxState => reduxState;
 
 export default connect(mapStateToProps, {getUser})(Auth);
 
-// this.props.getUser(res.data)
-//                 this.props.history.push('/profile')
