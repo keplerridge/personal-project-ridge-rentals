@@ -10,7 +10,8 @@ class Profile extends Component {
             rentalHistory: [],
             editView: false,
             email: '',
-            verEmail: ''
+            verEmail: '',
+            admin: false
         }
         
     }

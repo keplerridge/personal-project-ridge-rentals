@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
     register: async(req, res) => {
-        const {email, password} = req.body,
+        const {email, password, admin} = req.body,
               db = req.app.get('db');
 
         const [founduser] = await db.users.check_user([email]);
@@ -13,7 +13,7 @@ module.exports = {
         let salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
 
-        const [newUser] = await db.users.new_user([email, hash])
+        const [newUser] = await db.users.new_user([email, hash, admin])
 
         req.session.user = newUser;
         res.status(201).send(req.session.user);

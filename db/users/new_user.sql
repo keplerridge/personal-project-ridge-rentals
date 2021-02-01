@@ -1,8 +1,10 @@
 INSERT INTO users(
     email,
-    password
+    password,
+    admin
 ) VALUES (
     $1,
-    $2
+    $2,
+    FALSE
 )
-RETURNING user_id, email;
+RETURNING user_id, email, admin;

@@ -10,7 +10,8 @@ class Auth extends Component {
             email: '',
             password: '',
             verPassword: '',
-            registerView: false
+            registerView: false,
+            admin: true
         }
     }
 
@@ -30,10 +31,10 @@ class Auth extends Component {
     }
 
     register = () => {
-        const {email, password, verPassword} = this.state;
+        const {email, password, verPassword, admin} = this.state;
 
         if(password && password === verPassword) {
-            axios.post('/auth/register', {email, password})
+            axios.post('/auth/register', {email, password, admin})
             .then(res => {
                 this.props.getUser(res.data)
                 console.log(this.props.user)

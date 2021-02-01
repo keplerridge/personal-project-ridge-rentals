@@ -23,5 +23,20 @@ module.exports = {
         db.rentalEquipment.rental_history(id)
         .then(history => res.status(200).send(history))
         .catch(err => res.status(500).send(err))
+    },
+    getAllRentals: (req, res) => {
+        const db = req.app.get('db');
+
+        db.rentalEquipment.get_all_equipment()
+        .then(equipment => res.status(200).send(equipment))
+        .catch(err => res.status(500).send(err))
+    },
+    addToRentals: (req, res) => {
+        const {picture, description, name} = req.body,
+              db = req.app.get('db');
+
+        db.rentalEquipment.add_equipment([picture, description, name])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
     }
 }

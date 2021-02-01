@@ -35,3 +35,7 @@ app.get('/auth/logout', authCtrl.logout);
 app.put('/auth/user/:id', mainCtrl.updateEmail);
 app.delete('/auth/user/:id', mainCtrl.delete);
 app.get('/auth/history/:id', mainCtrl.getRentalHistory);
+
+//Rentals
+app.get('/auth/rentals', mainCtrl.getAllRentals);
+app.post('/auth/newrental', mainCtrl.addToRentals);

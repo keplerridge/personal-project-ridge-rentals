@@ -4,6 +4,9 @@ CREATE TABLE users(
     password VARCHAR(100) NOT NULL
 );
 
+ALTER TABLE users
+ADD COLUMN admin BOOLEAN;
+
 CREATE TABLE rental_equipment(
     equipment_id SERIAL PRIMARY KEY,
     equipment_picture TEXT,
