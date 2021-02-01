@@ -1,3 +1,5 @@
+const bcrypt = require('bcryptjs');
+
 module.exports = {
     updateEmail: (req, res) => {
         const {id} = req.params,
@@ -6,6 +8,18 @@ module.exports = {
 
         db.users.update_email([email, id])
         .then(user => res.status(200).send(user))
+        .catch(err => res.status(500).send(err))
+    },
+    updatePassword: (req, res) => {
+        const {id} = req.params,
+              {newPassword} = req.body
+              db = req.app.get('db');
+
+        let salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(newPassword, salt)
+
+        db.users.update_password([hash, id])
+        .then(res => res.sendStatus(202))
         .catch(err => res.status(500).send(err))
     },
     delete: (req, res) => {

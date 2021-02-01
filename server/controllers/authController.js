@@ -18,6 +18,22 @@ module.exports = {
         req.session.user = newUser;
         res.status(201).send(req.session.user);
     },
+    registerAdmin: async(req, res) => {
+        const {adminEmail, adminPassword, isAdmin} = req.body,
+              db = req.app.get('db');
+
+        const [founduser] = await db.users.check_user([adminEmail]);
+        console.log(founduser)  
+        if(founduser){
+              return res.status(400).send('Email already in use')
+          }
+      
+          let salt = bcrypt.genSaltSync(10);
+          const hash = bcrypt.hashSync(adminPassword, salt);
+      
+          await db.users.add_new_admin([adminEmail, hash, isAdmin])
+          res.sendStatus(202);
+    },
     login: async(req, res) => {
         const {email, password} = req.body,
               db = req.app.get('db');

@@ -28,6 +28,7 @@ massive({
 
 //Authentication Endpoints
 app.post('/auth/register', authCtrl.register);
+app.post('/auth/registeradmin', authCtrl.registerAdmin);
 app.post('/auth/login', authCtrl.login);
 app.get('/auth/logout', authCtrl.logout);
 
@@ -35,6 +36,7 @@ app.get('/auth/logout', authCtrl.logout);
 app.put('/auth/user/:id', mainCtrl.updateEmail);
 app.delete('/auth/user/:id', mainCtrl.delete);
 app.get('/auth/history/:id', mainCtrl.getRentalHistory);
+app.put('/auth/updatepassword/:id', mainCtrl.updatePassword);
 
 //Rentals
 app.get('/auth/rentals', mainCtrl.getAllRentals);
