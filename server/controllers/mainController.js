@@ -12,7 +12,7 @@ module.exports = {
     },
     updatePassword: (req, res) => {
         const {id} = req.params,
-              {newPassword} = req.body
+              {newPassword} = req.body,
               db = req.app.get('db');
 
         let salt = bcrypt.genSaltSync(10);

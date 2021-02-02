@@ -66,6 +66,7 @@ class Auth extends Component {
     }
 
     render(){
+        // console.log(this.state)
         return(
             <div>
                 <section>

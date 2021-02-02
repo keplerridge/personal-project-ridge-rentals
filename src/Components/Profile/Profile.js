@@ -70,9 +70,10 @@ class Profile extends Component {
             return(
                 axios.put(`/auth/updatepassword/${this.props.user.user_id}`, {newPassword: newPassword})
                 .then(res => {
-                    // this.props.getUser(res.data[0])
-                    this.state.passwordEdit();
+                    this.props.getUser(res.data[0])
+                    this.state.passwordEditView()
                     this.setState({newPassword: '', verNewPassword: ''})
+                    alert('Password updated')
                 })
                 .catch(err => console.log(err))
             )
@@ -123,6 +124,7 @@ class Profile extends Component {
     }
 
     render(){
+        // console.log(this.props)
         return(
             <div>
                     {!this.state.admin ? (
