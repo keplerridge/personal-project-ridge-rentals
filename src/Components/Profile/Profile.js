@@ -71,7 +71,7 @@ class Profile extends Component {
                 axios.put(`/auth/updatepassword/${this.props.user.user_id}`, {newPassword: newPassword})
                 .then(res => {
                     this.props.getUser(res.data[0])
-                    this.state.passwordEditView()
+                    this.passwordEditView()
                     this.setState({newPassword: '', verNewPassword: ''})
                     alert('Password updated')
                 })

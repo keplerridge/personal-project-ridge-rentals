@@ -19,7 +19,7 @@ module.exports = {
         const hash = bcrypt.hashSync(newPassword, salt)
 
         db.users.update_password([hash, id])
-        .then(res => res.sendStatus(202))
+        .then(() => res.sendStatus(202))
         .catch(err => res.status(500).send(err))
     },
     delete: (req, res) => {
