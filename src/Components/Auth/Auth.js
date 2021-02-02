@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {Component} from 'react';
+import {Component, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {getUser} from '../../redux/reducer';
 
@@ -122,3 +122,17 @@ const mapStateToProps = reduxState => reduxState;
 
 export default connect(mapStateToProps, {getUser})(Auth);
 
+
+
+// const [email, setEmail] = useState(''),
+//       [password, setPassword] = useState(''),
+//       [verPassword, setVerPassword] = useState(''),
+//       [registerView, setRegisterView] = useState(false),
+//       [admin, setAdmin] = useState(true)
+
+// useEffect(() => {
+//     if(props.user.user_id){
+//         props.history.push('/')
+//         alert('Already logged in, please logout before trying to login in to another account')
+//     }
+// }, [])

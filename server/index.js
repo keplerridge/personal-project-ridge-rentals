@@ -5,7 +5,10 @@ const express = require('express'),
       session = require('express-session'),
       authCtrl = require('./controllers/authController'),
       mainCtrl = require('./controllers/mainController'),
-      {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
+      {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env,
+      {google} = require('googleapis'),
+      nodemailer = require('nodemailer'),
+      OAuth2 = google.auth.Oauth2;
 
 app.use(express.json());
 app.use(session({
