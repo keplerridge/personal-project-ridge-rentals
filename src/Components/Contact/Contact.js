@@ -24,6 +24,7 @@ const sendEmail = () => {
 
     return(
             <div>
+                {console.log(email)}
                 <section>
                     <h2>To contact us, please call or email</h2>
                     <p>EMAIL: ridgerentals@gmail.com</p>
