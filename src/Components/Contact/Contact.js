@@ -1,6 +1,6 @@
 import './Contact.css';
 import {useState} from 'react';
-const nodemailer = require('nodemailer');
+import axios from 'axios';
 
 const Contact = () => {
     const [firstName, setFirstName] = useState(''),
@@ -8,6 +8,19 @@ const Contact = () => {
           [email, setEmail] = useState(''),
           [subject, setSubject] = useState(''),
           [message, setMessage] = useState('');
+
+const sendEmail = () => {
+    axios.post('/auth/email', {firstName, lastName, subject, email, message})
+    .then(() => {
+        setFirstName('')
+        setLastName('')
+        setEmail('')
+        setSubject('')
+        setMessage('')
+        alert('Message Sent!')
+    })
+    .catch(err => console.log(err))
+}
 
     return(
             <div>
@@ -29,7 +42,7 @@ const Contact = () => {
                         <input value={subject} type='text' onChange={e => setSubject(e.target.value)} />
                         <label for='message' >Message: </label>
                         <textarea value={message} id='message' type='text' onChange={e => setMessage(e.target.value)}></textarea>
-                        <button>Send Message</button>
+                        <button onClick={() => sendEmail()}>Send Message</button>
                     </form>
                 </section>
             </div>

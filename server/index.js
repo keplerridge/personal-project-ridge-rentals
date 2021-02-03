@@ -5,6 +5,7 @@ const express = require('express'),
       session = require('express-session'),
       authCtrl = require('./controllers/authController'),
       mainCtrl = require('./controllers/mainController'),
+      emailCtrl = require('./controllers/emailController'),
       {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env,
       {google} = require('googleapis'),
       nodemailer = require('nodemailer'),
@@ -44,3 +45,6 @@ app.put('/auth/updatepassword/:id', mainCtrl.updatePassword);
 //Rentals
 app.get('/auth/rentals', mainCtrl.getAllRentals);
 app.post('/auth/newrental', mainCtrl.addToRentals);
+
+//email
+app.post('/auth/email', emailCtrl.sendEmail);
