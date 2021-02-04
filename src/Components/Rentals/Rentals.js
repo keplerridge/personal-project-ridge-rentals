@@ -1,53 +1,44 @@
-import {Component} from 'react';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {getUser} from '../../redux/reducer';
 
-class Rentals extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            equipment: [],
-            name: '',
-            description: '',
-            image: ''
-        }
-    }
-    componentDidMount(){
-        this.getRentals();
-    }
+const Rentals = props => {
+    const [equipment, setEquipment] = useState([]),
+          [name, setName] = useState(''),
+          [description, setDescription] = useState(''),
+          [image, setImage] = useState('');
 
-    getRentals = () => {
+    useEffect(() => {
+        getRentals();
+    }, [])
+
+    const getRentals = () => {
         axios.get(`/auth/rentals`)
         .then(res => {
-            this.setState({equipment: res.data})
+            setEquipment(res.data)
             console.log(res.data)
         })
         .catch(err => console.log(err))
     }
-
-    handleChange = (event) => {
-        this.setState({[event.target.name]: event.target.value})
-    }
     
-    addEquipment = () => {
-        axios.post('/auth/newrental', {name: this.state.name, description: this.state.description, image: this.state.image})
+    const addEquipment = () => {
+        axios.post('/auth/newrental', {name: name, description: description, image: image})
         .then(() => {
-            this.getRentals()
-            this.setState({name: '', description: '', image: ''})
+            getRentals()
+            setName('')
+            setDescription('')
+            setImage('')
         })
         .catch(err => console.log(err))
     }
 
-    render(){
-        console.log(this.props)
-        console.log(this.state.equipment)
         return(
             <section>
-                {!this.props.user.admin
+                {!props.user.admin
                     ? (
                          <section>
-                            {this.state.equipment.map(equipment => (
+                            {equipment.map(equipment => (
                                 <div key={equipment.equipment_id}>
                                     <img src ={equipment.equipment_picture} alt={equipment.name} />
                                     <p>{equipment.name}</p>
@@ -58,23 +49,21 @@ class Rentals extends Component {
                     ) : (
                         <section>
                             <input
-                                value={this.state.name}
+                                value={name}
                                 placeholder='Equipment Name'
-                                name='name'
-                                onChange={e => this.handleChange(e)} />
+                                onChange={e => setName(e.target.value)} />
                             <input
-                                value={this.state.description}
+                                value={description}
                                 placeholder='Equipment Description'
-                                name='description'
-                                onChange={e => this.handleChange(e)} />
+                                onChange={e => setDescription(e.target.value)} />
                             <input
-                                value={this.state.image}
+                                value={image}
                                 placeholder='Equipment Image'
                                 name='image'
-                                onChange={e => this.handleChange(e)} />
-                            <button onClick={this.addEquipment}>Add Equipment</button>
+                                onChange={e => setImage(e.target.value)} />
+                            <button onClick={() => addEquipment()}>Add Equipment</button>
                             <section>
-                                {this.state.equipment.map(equipment => (
+                                {equipment.map(equipment => (
                                 <div key={equipment.equipment_id}>
                                     <img src ={equipment.equipment_picture} alt={equipment.name} />
                                     <p>{equipment.name}</p>
@@ -87,7 +76,7 @@ class Rentals extends Component {
             </section>
         )
     }
-}
+
 
 const mapStateToProps = reduxState => reduxState;
 
