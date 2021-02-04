@@ -5,16 +5,16 @@ import {getUser, clearUser} from '../../redux/reducer';
 
 const Profile = props => {
     const [rentalHistory, setRentalHistory] = useState([]),
-        [editView, setEditView] = useState(false),
-        [passwordEdit,setPasswordEdit] = useState(false),
-        [email, setEmail] = useState(''),
-        [verEmail, setVerEmail] = useState(''),
-        [newPassword, setNewPassword] = useState(''),
-        [verNewPassword, setVerNewPassword] = useState(''),
-        [adminEmail, setAdminEmail] = useState(''),
-        [adminPassword, setAdminPassword] = useState(''),
-        [verAdPassword, setVerAdPassword] = useState(''),
-        [admin, setAdmin] = useState(null);
+          [editView, setEditView] = useState(false),
+          [passwordEdit,setPasswordEdit] = useState(false),
+          [email, setEmail] = useState(''),
+          [verEmail, setVerEmail] = useState(''),
+          [newPassword, setNewPassword] = useState(''),
+          [verNewPassword, setVerNewPassword] = useState(''),
+          [adminEmail, setAdminEmail] = useState(''),
+          [adminPassword, setAdminPassword] = useState(''),
+          [verAdPassword, setVerAdPassword] = useState(''),
+          [admin, setAdmin] = useState(null);
 
   useEffect(() => {
       setAdmin(props.user.admin)
@@ -30,14 +30,6 @@ const Profile = props => {
         }
   }, [props])
 
-    // const getRentalHistory = () => {
-    //     axios.get(`/auth/history/${props.user_id}`)
-    //     .then(res => {
-    //         setRentalHistory(res.data)
-    //     })
-    //     .catch(err => console.log(err))
-    // }
-
     const updateEmail = () => {
 
         if(email && email === verEmail){
@@ -48,6 +40,7 @@ const Profile = props => {
                     editViews()
                     setEmail('')
                     setVerEmail('')
+                    alert('Email updated')
                 })
                 .catch(err => console.log(err))
             )
@@ -111,10 +104,6 @@ const Profile = props => {
         })
         .catch(err => console.log(err))
     }
-
-    // const isAdmin = () => {
-    //     setAdmin(props.user.admin)
-    // }
 
         return(
             <div>
@@ -191,6 +180,7 @@ const Profile = props => {
                             placeholder='Confirm New Password'
                             onChange={e => setVerNewPassword(e.target.value)} />
                         <button onClick={() => updatePassword()}>Update Password</button>
+                        <button onClick={() => passwordEditView()}>BACK</button>
                     </section>
                 )}
                 <button onClick={() => logout()}>Logout</button>
