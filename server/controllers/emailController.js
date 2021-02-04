@@ -1,6 +1,6 @@
-const nodemailer = require('nodemailer');
 require('dotenv').config();
-const {EMAIL_PASSWORD, EMAIL_USERNAME} = process.env;
+const nodemailer = require('nodemailer'),
+      {EMAIL_PASSWORD, EMAIL_USERNAME} = process.env;
 
 module.exports = {
     sendEmail: async(req, res) => {
