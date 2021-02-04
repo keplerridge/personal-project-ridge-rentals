@@ -1,61 +1,53 @@
 import axios from 'axios';
-import React, {Component} from 'react';
+import {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {getUser, clearUser} from '../../redux/reducer';
 
-class Profile extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            rentalHistory: [],
-            editView: false,
-            passwordEdit: false,
-            email: '',
-            verEmail: '',
-            newPassword: '',
-            verNewPassword: '',
-            password: '',
-            verPassword: '',
-            adminEmail: '',
-            adminPassword: '',
-            verAdminPassword: '',
-            admin: null,
+const Profile = props => {
+    const [rentalHistory, setRentalHistory] = useState([]),
+        [editView, setEditView] = useState(false),
+        [passwordEdit,setPasswordEdit] = useState(false),
+        [email, setEmail] = useState(''),
+        [verEmail, setVerEmail] = useState(''),
+        [newPassword, setNewPassword] = useState(''),
+        [verNewPassword, setVerNewPassword] = useState(''),
+        [adminEmail, setAdminEmail] = useState(''),
+        [adminPassword, setAdminPassword] = useState(''),
+        [verAdPassword, setVerAdPassword] = useState(''),
+        [admin, setAdmin] = useState(null);
+
+  useEffect(() => {
+      setAdmin(props.user.admin)
+      if(!props.user.email){
+            props.history.push('/')
+            alert('Plese login or register to view your')
+        } else if (!admin) {
+            axios.get(`/auth/history/${props.user_id}`)
+            .then(res => {
+                setRentalHistory(res.data)
+            })
+            .catch(err => console.log(err))
         }
-        
-    }
+  }, [props])
 
-    componentDidMount(){
-        this.isAdmin();
-        if(!this.props.user.email){
-                this.props.history.push('/')
-                alert('Plese login or register to view your')
-        } else if (!this.state.admin){
-            this.getRentalHistory();
-        }
-    }
+    // const getRentalHistory = () => {
+    //     axios.get(`/auth/history/${props.user_id}`)
+    //     .then(res => {
+    //         setRentalHistory(res.data)
+    //     })
+    //     .catch(err => console.log(err))
+    // }
 
-    getRentalHistory = () => {
-        axios.get(`/auth/history/${this.props.user_id}`)
-        .then(res => {
-            this.setState({rentalHistory: res.data})
-        })
-        .catch(err => console.log(err))
-    }
-
-    handleChange = (event) => {
-        this.setState({[event.target.name]: event.target.value})
-    }
-
-    updateEmail = () => {
-        const {email, verEmail} = this.state;
+    const updateEmail = () => {
 
         if(email && email === verEmail){
             return( 
-                axios.put(`/auth/user/${this.props.user.user_id}`, {email: this.state.email})
+                axios.put(`/auth/user/${props.user.user_id}`, {email: email})
                 .then(res => {
-                    this.props.getUser(res.data[0])
-                    this.editView()
-                    this.setState({email: '', verEmail: ''})
+                    props.getUser(res.data[0])
+                    editViews()
+                    setEmail('')
+                    setVerEmail('')
                 })
                 .catch(err => console.log(err))
             )
@@ -63,16 +55,16 @@ class Profile extends Component {
         return alert('Email addresses do not match')
     }
 
-    updatePassword = () => {
-        const {newPassword, verNewPassword} = this.state;
+    const updatePassword = () => {
 
         if(newPassword && newPassword === verNewPassword){
             return(
-                axios.put(`/auth/updatepassword/${this.props.user.user_id}`, {newPassword: newPassword})
+                axios.put(`/auth/updatepassword/${props.user.user_id}`, {newPassword: newPassword})
                 .then(res => {
-                    this.props.getUser(res.data[0])
-                    this.passwordEditView()
-                    this.setState({newPassword: '', verNewPassword: ''})
+                    props.getUser(res.data[0])
+                    passwordEditView()
+                    setNewPassword('')
+                    setVerNewPassword('')
                     alert('Password updated')
                 })
                 .catch(err => console.log(err))
@@ -82,11 +74,10 @@ class Profile extends Component {
         }
     }
 
-    registerAdmin = () => {
-        const {adminEmail, adminPassword, verAdminPassword} = this.state,
-              isAdmin = true;
+    const registerAdmin = () => {
+        const isAdmin = true;
 
-        if(adminPassword && adminPassword === verAdminPassword) {
+        if(adminPassword && adminPassword === verAdPassword) {
             axios.post('/auth/registeradmin', {adminEmail, adminPassword, isAdmin})
             .then((res) => {
                 console.log(res)
@@ -95,42 +86,42 @@ class Profile extends Component {
             .catch(err => {
                 console.log(err)
                 alert('Email already in use, please use another')
-                this.setState({adminEmail: '', adminPassword: '', verAdminPassword: ''})
+                setAdminEmail('')
+                setAdminPassword('')
+                setVerAdPassword('')
             })
         } else {
             alert('Passwords do not match')
         }
     }
 
-    editView = () => {
-        this.setState({editView: !this.state.editView})
+    const editViews = () => {
+        setEditView(!editView)
     }
 
-    passwordEditView = () => {
-        this.setState({passwordEdit: !this.state.passwordEdit})
+    const passwordEditView = () => {
+        setPasswordEdit(!passwordEdit)
     }
 
-    logout = () => {
+    const logout = () => {
         axios.get('auth/logout')
         .then(() => {
-            this.props.clearUser()
-            this.props.history.push('/')
+            props.clearUser()
+            props.history.push('/')
         })
         .catch(err => console.log(err))
     }
 
-    isAdmin = () => {
-        this.setState({admin: this.props.user.admin})
-    }
+    // const isAdmin = () => {
+    //     setAdmin(props.user.admin)
+    // }
 
-    render(){
-        // console.log(this.props)
         return(
             <div>
-                    {!this.state.admin ? (
+                    {!admin ? (
                         <section>
                             <h3>Your Rental History</h3>
-                            {this.state.rentalHistory.map(equipment => (
+                            {rentalHistory.map(equipment => (
                                 <div key={equipment.equipment_id}>
                                     <img src={equipment.equipment_picture} alt={equipment.name} />
                                     <p>{equipment.rental_date}</p>
@@ -143,77 +134,70 @@ class Profile extends Component {
                         <section>
                             <h2>REGISTER NEW ADMINISTRATOR</h2>
                             <input
-                                value={this.state.adminEmail}
-                                name='adminEmail'
+                                value={adminEmail}
                                 placeholder='New Administrator Email'
-                                onChange={e => this.handleChange(e)} />
+                                onChange={e => setAdminEmail(e.target.value)} />
                             <input
-                                value={this.state.adminPassword}
-                                name='adminPassword'
+                                value={adminPassword}
                                 placeholder='New Administrator Password'
                                 type='password'
-                                onChange={e => this.handleChange(e)} />
+                                onChange={e => setAdminPassword(e.target.value)} />
                             <input
-                                value={this.state.verAdminPassword}
-                                name='verAdminPassword'
+                                value={verAdPassword}
                                 placeholder='Verify Administrator Password'
                                 type='password'
-                                onChange={e => this.handleChange(e)} />
-                            <button onClick={this.registerAdmin}>Register New Administrator</button>
+                                onChange={e => setVerAdPassword(e.target.value)} />
+                            <button onClick={() => registerAdmin()}>Register New Administrator</button>
                         </section>
                     )}
                 <h3>Account Information</h3>
-                {this.state.editView
+                {editView
                 ? (
                     <div>
                         <h4>Change Email Address</h4>
-                        <p>{this.props.user.email}</p>
+                        <p>{props.user.email}</p>
                         <input
-                                value={this.state.email}
-                                name='email'
+                                value={email}
                                 placeholder='New Email'
-                                onChange={e => this.handleChange(e)} />
+                                onChange={e => setEmail(e.target.value)} />
                         <input
-                                value={this.state.verEmail}
-                                name='verEmail'
+                                value={verEmail}
                                 placeholder='Confirm New Email'
-                                onChange={e => this.handleChange(e)} />
-                        <button onClick={this.updateEmail}>CONFIRM CHANGE</button>
-                        <button onClick={this.editView}>BACK</button>
+                                onChange={e => setVerEmail(e.target.value)} />
+                        <button onClick={() => updateEmail()}>CONFIRM CHANGE</button>
+                        <button onClick={() => editViews()}>BACK</button>
                     </div>
                 ) : (
                     <div>
                         <h4>Account Email Address</h4>
-                        <p>{this.props.user.email}</p>
-                        <p>Click Here to <span onClick={this.editView}>Change Email</span></p>
-                        <span onClick={this.passwordEditView}>Click Here to Update Password</span>
+                        <p>{props.user.email}</p>
+                        <p>Click Here to <span onClick={() => editViews()}>Change Email</span></p>
+                        <span onClick={() => passwordEditView()}>Click Here to Update Password</span>
                     </div>
                 )}
-                {!this.state.passwordEdit
+                {!passwordEdit
                 ? (
                     null
                 ) : (
                     <section>
                         <input
-                            value={this.state.newPassword}
-                            name='newPassword'
+                            value={newPassword}
                             type='password'
                             placeholder='New Password'
-                            onChange={e => this.handleChange(e)} />
+                            onChange={e => setNewPassword(e.target.value)} />
                         <input
-                            value={this.state.verNewPassword}
-                            name='verNewPassword'
+                            value={verNewPassword}
                             type='password'
                             placeholder='Confirm New Password'
-                            onChange={e => this.handleChange(e)} />
-                        <button onClick={this.updatePassword}>Update Password</button>
+                            onChange={e => setVerNewPassword(e.target.value)} />
+                        <button onClick={() => updatePassword()}>Update Password</button>
                     </section>
                 )}
-                <button onClick={this.logout}>Logout</button>
+                <button onClick={() => logout()}>Logout</button>
             </div>
         )
     }
-}
+
 
 const mapStateToProps = reduxState => reduxState;
 
