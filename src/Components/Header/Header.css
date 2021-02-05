@@ -21,7 +21,7 @@ header h1 {
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-    color: rgb(39, 184, 184);
+    color: #39B2A7;
     font-size: 65px;
 }
 
@@ -34,6 +34,6 @@ header h1 {
 #link {
     margin-left: 10px;
     margin-right: 10px;
-    color: rgb(39, 184, 184);
+    color: #39B2A7;
     text-decoration: none;
 }

@@ -99,8 +99,8 @@ const Profile = props => {
     const logout = () => {
         axios.get('auth/logout')
         .then(() => {
-            props.clearUser()
             props.history.push('/')
+            props.clearUser()
         })
         .catch(err => console.log(err))
     }

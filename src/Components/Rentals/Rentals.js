@@ -1,5 +1,8 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import {v4 as randomString} from 'uuid';
+import Dropzone from 'react-dropzone';
+import {GridLoader} from 'react-spinners';
 import {connect} from 'react-redux';
 import {getUser} from '../../redux/reducer';
 
@@ -7,11 +10,62 @@ const Rentals = props => {
     const [equipment, setEquipment] = useState([]),
           [name, setName] = useState(''),
           [description, setDescription] = useState(''),
-          [image, setImage] = useState('');
+          [image, setImage] = useState(''),
+          [isUploading, setIsUploading] = useState(false),
+          [url, setUrl] = useState('');
 
     useEffect(() => {
         getRentals();
     }, [])
+
+    const getSignedRequest = ([file]) => {
+        setIsUploading(true);
+        const fileName = `${randomString()}-${file.name.replace(/\s/g, '-')}`;
+
+        axios
+            .get('/auth/signs3', {
+                params: {
+                    'file-name': fileName,
+                    'file-type': file.type,
+                },
+            })
+            .then(res => {
+                const {signedRequest, url} = res.data;
+                uploadFile(file, signedRequest, url);
+            })
+            .catch(err => {
+                console.log(err)
+            });
+    }
+
+    const uploadFile = (file, signedRequest, url) => {
+        const options = {
+            headers: {
+                'Constant-Type': file.type,
+            },
+        };
+
+        axios
+            .put(signedRequest, file, options)
+            .then(() => {
+                setIsUploading(false)
+                setUrl(url)
+                axios.post('/auth/newrental', {name: name, description: description, image: url})
+                    .then(() => {
+                        getRentals()
+                        setName('')
+                        setDescription('')
+                    }).catch(err => console.log(err))
+            })
+            .catch(err => {
+                setIsUploading(false)
+            if(err.response.status === 400){
+                alert('Upload failed, check CORS configuration and bucket policy. Double check AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY')
+            } else {
+                alert(`ERROR: ${err.status} ${err.stack}`)
+            }
+        })
+    }
 
     const getRentals = () => {
         axios.get(`/auth/rentals`)
@@ -21,18 +75,6 @@ const Rentals = props => {
         })
         .catch(err => console.log(err))
     }
-    
-    const addEquipment = () => {
-        axios.post('/auth/newrental', {name: name, description: description, image: image})
-        .then(() => {
-            getRentals()
-            setName('')
-            setDescription('')
-            setImage('')
-        })
-        .catch(err => console.log(err))
-    }
-
         return(
             <section>
                 {!props.user.admin
@@ -45,9 +87,33 @@ const Rentals = props => {
                                     <p>{equipment.equipment_description}</p>
                                 </div>
                                 ))}
-                            </section> 
+                         </section> 
                     ) : (
                         <section>
+                            <h1>Add New Equipment Here</h1>
+                            <Dropzone
+                                onDropAccepted={() => getSignedRequest()}
+                                accept="image/*"
+                                multiple={false}>
+                                {({getRootProps, getInputProps}) => (
+                                    <div 
+                                        style = {{
+                                        position: 'relative',
+                                        width: 160,
+                                        height: 80,
+                                        borderWidth: 5,
+                                        marginTop: 25,
+                                        borderColor: 'gray',
+                                        borderStyle: 'dashed',
+                                        borderRadius: 5,
+                                        display: 'inline-block',
+                                        fontSize: 17,}}
+                                        {...getRootProps()}>
+                                        <input {...getInputProps()} />
+                                        {isUploading ? <GridLoader /> : <p>Drop files here, or click to select files</p>}
+                                    </div>
+                                )}
+                            </Dropzone>
                             <input
                                 value={name}
                                 placeholder='Equipment Name'
@@ -56,12 +122,6 @@ const Rentals = props => {
                                 value={description}
                                 placeholder='Equipment Description'
                                 onChange={e => setDescription(e.target.value)} />
-                            <input
-                                value={image}
-                                placeholder='Equipment Image'
-                                name='image'
-                                onChange={e => setImage(e.target.value)} />
-                            <button onClick={() => addEquipment()}>Add Equipment</button>
                             <section>
                                 {equipment.map(equipment => (
                                 <div key={equipment.equipment_id}>

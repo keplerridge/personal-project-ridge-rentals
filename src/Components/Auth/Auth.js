@@ -8,7 +8,7 @@ const Auth = props => {
           [password, setPassword] = useState(''),
           [verPassword, setVerPassword] = useState(''),
           [registerView, setRegisterView] = useState(false),
-          [admin, setAdmin] = useState(true);
+          [admin, setAdmin] = useState(null);
 
     useEffect(() => {
         if(props.user.user_id){
