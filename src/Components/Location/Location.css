@@ -1,24 +1,32 @@
 .location {
     display: flex;
+    box-sizing: border-box;
     flex-direction: row;
     position: absolute;
     top: 0%;
     left: 0%;
-    height: 100vh;
+    height: 85%;
     width: 100vw;
+    background-color: #39B2A7;
+    margin-top: 100px;
 }
 
 .map-container {
-    margin-top: 150px;
-    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-left: 75px;
+    align-items: center;
+    width: 45%;
+}
+
+.map{
+    border-radius: 15px;
 }
 
 #map-header {
     display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 50px;
-    margin-left: 275px;
 }
 
 .location-info{
@@ -26,9 +34,14 @@
     position: absolute;
     right: 0%;
     flex-direction: column;
-    margin-right: 110px;
-    margin-top: 175px;
+    margin-right: 75px;
+    margin-top: 30px;
     font-size: 25px;
+    width: 45%;
+}
+
+.location-info h1 {
+    font-size: 50px;
 }
 
 #info-sentence {

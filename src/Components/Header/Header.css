@@ -1,9 +1,9 @@
-header {
+.main-header {
     display: flex;
     flex-direction: row;
     align-items: center;
     height: 100px;
-    width: 100%;
+    width: 100vw;
     background-color: black;
 }
 

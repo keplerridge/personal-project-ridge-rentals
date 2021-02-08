@@ -5,12 +5,12 @@ import Dropzone from 'react-dropzone';
 import {GridLoader} from 'react-spinners';
 import {connect} from 'react-redux';
 import {getUser} from '../../redux/reducer';
+import './Rentals.css';
 
 const Rentals = props => {
     const [equipment, setEquipment] = useState([]),
           [name, setName] = useState(''),
           [description, setDescription] = useState(''),
-          [image, setImage] = useState(''),
           [isUploading, setIsUploading] = useState(false),
           [imgUrl, setImgUrl] = useState('');
 
@@ -85,12 +85,12 @@ const Rentals = props => {
             <section>
                 {!props.user.admin
                     ? (
-                         <section>
+                         <section className='image-container'>
                             {equipment.map(equipment => (
                                 <div key={equipment.equipment_id}>
-                                    <img src ={equipment.equipment_picture} alt={equipment.name} />
+                                    <img className='images' src ={equipment.equipment_picture} alt={equipment.name} />
                                     <p>{equipment.name}</p>
-                                    <p>{equipment.equipment_description}</p>
+                                    <p className='description'>{equipment.equipment_description}</p>
                                 </div>
                                 ))}
                          </section> 
@@ -133,7 +133,7 @@ const Rentals = props => {
                                 <div key={equipment.equipment_id}>
                                     <img src ={equipment.equipment_picture} alt={equipment.name} />
                                     <p>{equipment.name}</p>
-                                    <p>{equipment.equipment_description}</p>
+                                    <p className='description'>{equipment.equipment_description}</p>
                                 </div>
                                 ))}
                             </section> 

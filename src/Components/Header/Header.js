@@ -5,7 +5,7 @@ import './Header.css';
 const Header = (props) => {
   if (props.location.pathname === "/") {
     return (
-      <header>
+      <header className='main-header'>
         <img onClick={() => props.history.push('/')} src={logo} alt='Mountains Logo'/>
         <h1>RIDGE RENTALS</h1>
         <nav className='nav'>
@@ -19,7 +19,7 @@ const Header = (props) => {
     );
   } else if (props.location.pathname === "/auth") {
     return (
-      <header>
+      <header className='main-header'>
         <img onClick={() => props.history.push('/')} src={logo} alt='Mountains Logo'/>
         <h1>Ridge Rentals</h1>
         <nav className='nav'>
@@ -31,7 +31,7 @@ const Header = (props) => {
     );
   } else if (props.location.pathname === "/rentals") {
     return (
-      <header>
+      <header className='main-header'>
         <img onClick={() => props.history.push('/')} src={logo} alt='Mountains Logo'/>
         <h1>Ridge Rentals</h1>
         <nav className='nav'>
@@ -43,7 +43,7 @@ const Header = (props) => {
     );
   } else if (props.location.pathname === "/location") {
     return (
-      <header>
+      <header className='main-header'>
         <img onClick={() => props.history.push('/')} src={logo} alt='Mountains Logo'/>
         <h1>Ridge Rentals</h1>
         <nav className='nav'>
@@ -55,7 +55,7 @@ const Header = (props) => {
     );
   } else if (props.location.pathname === "/contact") {
     return (
-      <header>
+      <header className='main-header'>
         <img onClick={() => props.history.push('/')} src={logo} alt='Mountains Logo'/>
         <h1>Ridge Rentals</h1>
         <nav className='nav'>
@@ -67,7 +67,7 @@ const Header = (props) => {
     );
   } else if (props.location.pathname === "/profile") {
     return (
-      <header>
+      <header className='main-header'>
         <img onClick={() => props.history.push('/')} src={logo} alt='Mountains Logo'/>
         <h1>Ridge Rentals</h1>
         <nav className='nav'>

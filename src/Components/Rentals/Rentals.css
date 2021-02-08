@@ -1,0 +1,20 @@
+.image-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 25px;
+}
+
+.description{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+}
+
+.images{
+    height: 350px;
+    width: 350px;
+    object-fit: cover;
+}

@@ -1,11 +1,12 @@
 import {Component} from 'react';
+import './Footer.css'
 
 class Footer extends Component {
     render(){
         return(
-            <div>
-                Footer
-            </div>
+            <footer>
+                <a href='https://www.facebook.com/builtbyridge' target='_blank'>Ridge Renovation</a>
+            </footer>
         )
     }
 }
