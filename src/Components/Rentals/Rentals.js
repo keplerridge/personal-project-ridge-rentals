@@ -12,13 +12,14 @@ const Rentals = props => {
           [description, setDescription] = useState(''),
           [image, setImage] = useState(''),
           [isUploading, setIsUploading] = useState(false),
-          [url, setUrl] = useState('');
+          [imgUrl, setImgUrl] = useState('');
 
     useEffect(() => {
         getRentals();
     }, [])
 
     const getSignedRequest = ([file]) => {
+        console.log(file);
         setIsUploading(true);
         const fileName = `${randomString()}-${file.name.replace(/\s/g, '-')}`;
 
@@ -31,6 +32,7 @@ const Rentals = props => {
             })
             .then(res => {
                 const {signedRequest, url} = res.data;
+                setImgUrl(url)
                 uploadFile(file, signedRequest, url);
             })
             .catch(err => {
@@ -38,24 +40,28 @@ const Rentals = props => {
             });
     }
 
-    const uploadFile = (file, signedRequest, url) => {
-        const options = {
-            headers: {
-                'Constant-Type': file.type,
-            },
-        };
-
-        axios
-            .put(signedRequest, file, options)
-            .then(() => {
-                setIsUploading(false)
-                setUrl(url)
-                axios.post('/auth/newrental', {name: name, description: description, image: url})
+    useEffect(() => {
+        if(imgUrl){
+            axios.post('/auth/newrental', {image: imgUrl,  description: description, name: name})
                     .then(() => {
                         getRentals()
                         setName('')
                         setDescription('')
                     }).catch(err => console.log(err))
+        }
+    }, [imgUrl])
+
+    const uploadFile = (file, signedRequest, url) => {
+        const options = {
+            headers: {
+                'Content-Type': file.type,
+            },
+        };
+
+        axios
+            .put(signedRequest, file, options)
+            .then((res) => {
+                setIsUploading(false)
             })
             .catch(err => {
                 setIsUploading(false)
@@ -92,7 +98,7 @@ const Rentals = props => {
                         <section>
                             <h1>Add New Equipment Here</h1>
                             <Dropzone
-                                onDropAccepted={() => getSignedRequest()}
+                                onDropAccepted={(file) => getSignedRequest(file)}
                                 accept="image/*"
                                 multiple={false}>
                                 {({getRootProps, getInputProps}) => (

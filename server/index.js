@@ -53,7 +53,7 @@ s3.getSignedUrl('putObject', s3Params, (err, data) => {
     }
     const returnData = {
         signedRequest: data,
-        url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+        url: `https://${S3_BUCKET}.s3-us-west-1.amazonaws.com/${fileName}`
     };
     return res.send(returnData)
   });

@@ -46,10 +46,10 @@ module.exports = {
         .catch(err => res.status(500).send(err))
     },
     addToRentals: (req, res) => {
-        const {picture, description, name} = req.body,
+        const {image, description, name} = req.body,
               db = req.app.get('db');
 
-        db.rentalEquipment.add_equipment([picture, description, name])
+        db.rentalEquipment.add_equipment([image, description, name])
         .then(() => res.sendStatus(200))
         .catch(err => res.status(500).send(err))
     }
