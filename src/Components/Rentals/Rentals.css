@@ -1,9 +1,19 @@
+.rentals-container{
+    box-sizing: border-box;
+    height: 85vh;
+    width: 100vw;
+    margin: 0px;
+    border-width: 0px;
+    padding: 0px;
+    overflow-y: scroll;  
+}
+
 .image-container{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    margin-top: 25px;
+    padding-top: 25px;
 }
 
 .description{

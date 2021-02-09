@@ -82,7 +82,7 @@ const Rentals = props => {
         .catch(err => console.log(err))
     }
         return(
-            <section>
+            <section className='rentals-container'>
                 {!props.user.admin
                     ? (
                          <section className='image-container'>

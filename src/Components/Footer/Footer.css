@@ -14,4 +14,11 @@ footer a{
     border-radius: 15px;
     width: 140px;
     text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }

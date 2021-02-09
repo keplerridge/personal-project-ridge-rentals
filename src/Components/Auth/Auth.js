@@ -2,6 +2,7 @@ import axios from 'axios';
 import {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {getUser} from '../../redux/reducer';
+import './Auth.css';
 
 const Auth = props => {
     const [email, setEmail] = useState(''),
@@ -54,13 +55,11 @@ const Auth = props => {
 
         return(
             <div>
-                {console.log(registerView)}
-                <section>
-                    <h2>Ridge Rentals</h2>
+                <section className='form-container'>
                     {registerView 
                     ? (
-                        <div>
-                            <h3>REGISTER</h3>
+                        <div className='register'>
+                            <h3 id='register-header'>REGISTER</h3>
                             <input
                                 value={email}
                                 placeholder='Email Address'
@@ -76,11 +75,11 @@ const Auth = props => {
                                 type='password'
                                 onChange={e => setVerPassword(e.target.value)} />
                             <button onClick={() => register()}>Register</button>
-                            <button onClik={() => setRegisterView(!registerView)}>Back</button>
+                            <button onClick={() => setRegisterView(false)}>Back</button>
                         </div>
                     ) : (
-                        <div>
-                            <h3>Login Here</h3>
+                        <div className='login-form'>
+                            <h3 id='login-header'>Login Here</h3>
                             <input
                                 value={email}
                                 name='email'
@@ -92,8 +91,8 @@ const Auth = props => {
                                 placeholder='Password'
                                 type='password'
                                 onChange={e => setPassword(e.target.value)} />
-                            <button onClick={() => login()}>LOGIN</button>
-                            <p>Need an account? <span onClick={() => setRegisterView(!registerView)}>REGISTER HERE</span></p>
+                            <button id='login-button' onClick={() => login()}>LOGIN</button>
+                            <p>Need an account?<br></br><br></br><span onClick={() => setRegisterView(!registerView)}>REGISTER HERE</span></p>
                         </div>
                     )}
                 </section>
