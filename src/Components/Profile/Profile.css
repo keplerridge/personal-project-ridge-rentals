@@ -1,0 +1,26 @@
+.rental-page{
+    display: flex;
+    flex-direction: row;
+    height: 90vh;
+    width: 100vw;
+}
+
+.rental-history{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: space-evenly;
+    overflow-y: scroll;
+    height: 80vh;
+    width: 25vw;
+    text-align: center;
+}
+
+.rental-history h3{
+    display: flex;
+    font-size: 40px;
+}
+
+.equipment p{
+    font-size: 20px;
+}

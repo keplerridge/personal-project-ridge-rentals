@@ -28,7 +28,7 @@ header h1 {
 .nav {
     position: absolute;
     right: 20px;
-
+    font-size: 25px;
 }
 
 #link {

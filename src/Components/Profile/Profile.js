@@ -2,6 +2,7 @@ import axios from 'axios';
 import {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {getUser, clearUser} from '../../redux/reducer';
+import './Profile.css';
 
 const Profile = props => {
     const [rentalHistory, setRentalHistory] = useState([]),
@@ -106,15 +107,14 @@ const Profile = props => {
     }
 
         return(
-            <div>
+            <div className='rental-page'>
                     {!admin ? (
-                        <section>
+                        <section className='rental-history'>
                             <h3>Your Rental History</h3>
                             {rentalHistory.map(equipment => (
-                                <div key={equipment.equipment_id}>
-                                    <img src={equipment.equipment_picture} alt={equipment.name} />
-                                    <p>{equipment.rental_date}</p>
+                                <div className='equipment' key={equipment.equipment_id}>
                                     <p>{equipment.name}</p>
+                                    <p>{equipment.rental_date}</p>
                                     <p>{equipment.equipment_description}</p>
                                 </div>
                             ))}
