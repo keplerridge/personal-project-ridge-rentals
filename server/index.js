@@ -74,6 +74,7 @@ app.put('/auth/updatepassword/:id', mainCtrl.updatePassword);
 //Rentals
 app.get('/auth/rentals', mainCtrl.getAllRentals);
 app.post('/auth/newrental', mainCtrl.addToRentals);
+app.post('/auth/addhistory', mainCtrl.addToRentalHistory);
 
 //email
 app.post('/auth/email', emailCtrl.sendEmail);

@@ -15,7 +15,9 @@ const Profile = props => {
           [adminEmail, setAdminEmail] = useState(''),
           [adminPassword, setAdminPassword] = useState(''),
           [verAdPassword, setVerAdPassword] = useState(''),
-          [admin, setAdmin] = useState(null);
+          [admin, setAdmin] = useState(null),
+          [userId, setUserId] = useState(null),
+          [equipmentId, setEquipmentId] = useState(null);
 
   useEffect(() => {
       setAdmin(props.user.admin)
@@ -23,8 +25,9 @@ const Profile = props => {
             props.history.push('/')
             alert('Plese login or register to view your')
         } else if (!admin) {
-            axios.get(`/auth/history/${props.user_id}`)
+            axios.get(`/auth/history/${props.user.user_id}`)
             .then(res => {
+                console.log(res.data)
                 setRentalHistory(res.data)
             })
             .catch(err => console.log(err))
@@ -89,6 +92,17 @@ const Profile = props => {
         }
     }
 
+    const addToRentalHistory = () => {
+        axios.post(`/auth/addhistory`, {userId, equipmentId})
+        .then((res) => {
+            alert(`Added to user: ${userId} rental history`)
+        }).catch(err => {
+            console.log(err)
+            setUserId(null)
+            setEquipmentId(null)
+        })
+    }
+
     const editViews = () => {
         setEditView(!editView)
     }
@@ -110,18 +124,17 @@ const Profile = props => {
             <div className='rental-page'>
                     {!admin ? (
                         <section className='rental-history'>
-                            <h3>Your Rental History</h3>
-                            {rentalHistory.map(equipment => (
-                                <div className='equipment' key={equipment.equipment_id}>
-                                    <p>{equipment.name}</p>
-                                    <p>{equipment.rental_date}</p>
-                                    <p>{equipment.equipment_description}</p>
+                            <h3 className='rental-history-header'>YOUR RENTAL HISTORY</h3>
+                            {console.log(rentalHistory)}
+                            {rentalHistory.map((equipment, i) => (
+                                <div className='equipment' key={i}>
+                                    <p>{equipment.name}<br></br>{equipment.rental_date}</p>
                                 </div>
                             ))}
                         </section>
                     ) : (
-                        <section>
-                            <h2>REGISTER NEW ADMINISTRATOR</h2>
+                        <section className='admin-view'>
+                            <h2 id='admin-view-header'>REGISTER NEW ADMINISTRATOR</h2>
                             <input
                                 value={adminEmail}
                                 placeholder='New Administrator Email'
@@ -137,19 +150,30 @@ const Profile = props => {
                                 type='password'
                                 onChange={e => setVerAdPassword(e.target.value)} />
                             <button onClick={() => registerAdmin()}>Register New Administrator</button>
+                            <h2>ADD RENTAL TO PROFILE</h2>
+                            <input
+                                value={userId}
+                                placeholder='User ID'
+                                onChange={e => setUserId(e.target.value)} />
+                            <input
+                                value={equipmentId}
+                                placeholder='Equipment ID'
+                                onChange={e => setEquipmentId(e.target.value)} />
+                            <button onClick={() => addToRentalHistory()}>Add to Rental Profile</button>
                         </section>
                     )}
-                <h3>Account Information</h3>
                 {editView
                 ? (
-                    <div>
-                        <h4>Change Email Address</h4>
-                        <p>{props.user.email}</p>
+                    <div className='email-edit'>
+                        <h4 id='edit-email-header'>Change Email Address</h4>
+                        <p id='email-address'>{props.user.email}</p>
                         <input
+                                id='edit-input'
                                 value={email}
                                 placeholder='New Email'
                                 onChange={e => setEmail(e.target.value)} />
                         <input
+                                id='bottom-edit-input'
                                 value={verEmail}
                                 placeholder='Confirm New Email'
                                 onChange={e => setVerEmail(e.target.value)} />
@@ -157,18 +181,20 @@ const Profile = props => {
                         <button onClick={() => editViews()}>BACK</button>
                     </div>
                 ) : (
-                    <div>
+                    <div className='account-information'>
+                        <h3>Account Information</h3>
                         <h4>Account Email Address</h4>
-                        <p>{props.user.email}</p>
-                        <p>Click Here to <span onClick={() => editViews()}>Change Email</span></p>
-                        <span onClick={() => passwordEditView()}>Click Here to Update Password</span>
+                        <p id='email-address'>{props.user.email}</p>
+                        <p className='updates'>Click Here to <span onClick={() => editViews()}>Change Email</span></p>
+                        <p className='updates'>Click Here to <span onClick={() => passwordEditView()}>Update Password</span></p>
+                        <button id='logout' onClick={() => logout()}>Logout</button>
                     </div>
                 )}
                 {!passwordEdit
                 ? (
                     null
                 ) : (
-                    <section>
+                    <section className='password-edit'>
                         <input
                             value={newPassword}
                             type='password'
@@ -183,7 +209,6 @@ const Profile = props => {
                         <button onClick={() => passwordEditView()}>BACK</button>
                     </section>
                 )}
-                <button onClick={() => logout()}>Logout</button>
             </div>
         )
     }

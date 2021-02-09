@@ -86,6 +86,7 @@ const Rentals = props => {
                 {!props.user.admin
                     ? (
                          <section className='image-container'>
+                             {console.log(equipment)}
                             {equipment.map(equipment => (
                                 <div key={equipment.equipment_id}>
                                     <img className='images' src ={equipment.equipment_picture} alt={equipment.name} />

@@ -52,5 +52,13 @@ module.exports = {
         db.rentalEquipment.add_equipment([image, description, name])
         .then(() => res.sendStatus(200))
         .catch(err => res.status(500).send(err))
+    },
+    addToRentalHistory: (req, res) => {
+        const {userId, equipmentId} = req.body,
+              db = req.app.get('db');
+
+        db.rentalEquipment.add_to_history([userId, equipmentId])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
     }
 }
