@@ -6,3 +6,16 @@
     border-width: 0px;
     padding: 0px;
 }
+
+.intro{
+    width: 30vw;
+    display: flex;
+    flex-wrap: wrap;
+    height: 30vh;
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    left: 50px;
+    top: 125px;
+    color: #39B2A7;
+}

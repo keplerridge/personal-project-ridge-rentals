@@ -23,11 +23,14 @@ const Profile = props => {
       setAdmin(props.user.admin)
       if(!props.user.email){
             props.history.push('/')
-            alert('Plese login or register to view your')
+            alert('Plese login or register to view your profile')
         } else if (!admin) {
             axios.get(`/auth/history/${props.user.user_id}`)
             .then(res => {
                 console.log(res.data)
+                res.data.forEach(x => {
+                    x.rental_date = new Date(x.rental_date)
+                })
                 setRentalHistory(res.data)
             })
             .catch(err => console.log(err))
@@ -128,7 +131,7 @@ const Profile = props => {
                             {console.log(rentalHistory)}
                             {rentalHistory.map((equipment, i) => (
                                 <div className='equipment' key={i}>
-                                    <p>{equipment.name}<br></br>{equipment.rental_date}</p>
+                                    <p>{equipment.name}<br></br>{equipment.rental_date.getMonth() + 1}/{equipment.rental_date.getDate()}/{equipment.rental_date.getFullYear()}</p>
                                 </div>
                             ))}
                         </section>

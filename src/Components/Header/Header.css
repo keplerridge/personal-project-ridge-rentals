@@ -7,6 +7,10 @@
     background-color: black;
 }
 
+.mobile-dropdown{
+    display: none;
+}
+
 header img {
     position: absolute;
     left: 15px;
@@ -36,4 +40,22 @@ header h1 {
     margin-right: 10px;
     color: #39B2A7;
     text-decoration: none;
+}
+
+@media (max-width: 1570px) {
+    header h1{
+        font-size: 50px;
+    }
+
+    #link{
+        margin-left: 5px;
+        margin-right: 5px;
+        font-size: 22.5px;
+    }
+}
+
+@media (max-width: 1270px) {
+    .main-header{
+        display: none;
+    }
 }

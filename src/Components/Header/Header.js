@@ -1,9 +1,17 @@
 import { withRouter, Link } from "react-router-dom";
+import {useState} from 'react';
 import logo from './backgroundridgelogo.png';
 import './Header.css';
 
 const Header = (props) => {
-  if (props.location.pathname === "/") {
+  const [landing] = useState('/'),
+        [auth] = useState('/auth'),
+        [rentals] = useState('/rentals'),
+        [location] = useState('/location'),
+        [contact] = useState('/contact'),
+        [profile] = useState('/profile');
+
+  if (props.location.pathname === landing) {
     return (
       <header className='main-header'>
         <img onClick={() => props.history.push('/')} src={logo} alt='Mountains Logo'/>
@@ -17,7 +25,7 @@ const Header = (props) => {
         </nav>
       </header>
     );
-  } else if (props.location.pathname === "/auth") {
+  } else if (props.location.pathname === auth) {
     return (
       <header className='main-header'>
         <img onClick={() => props.history.push('/')} src={logo} alt='Mountains Logo'/>
@@ -29,7 +37,7 @@ const Header = (props) => {
         </nav>
       </header>
     );
-  } else if (props.location.pathname === "/rentals") {
+  } else if (props.location.pathname === rentals) {
     return (
       <header className='main-header'>
         <img onClick={() => props.history.push('/')} src={logo} alt='Mountains Logo'/>
@@ -41,7 +49,7 @@ const Header = (props) => {
         </nav>
       </header>
     );
-  } else if (props.location.pathname === "/location") {
+  } else if (props.location.pathname === location) {
     return (
       <header className='main-header'>
         <img onClick={() => props.history.push('/')} src={logo} alt='Mountains Logo'/>
@@ -53,7 +61,7 @@ const Header = (props) => {
         </nav>
       </header>
     );
-  } else if (props.location.pathname === "/contact") {
+  } else if (props.location.pathname === contact) {
     return (
       <header className='main-header'>
         <img onClick={() => props.history.push('/')} src={logo} alt='Mountains Logo'/>
@@ -65,7 +73,7 @@ const Header = (props) => {
         </nav>
       </header>
     );
-  } else if (props.location.pathname === "/profile") {
+  } else if (props.location.pathname === profile) {
     return (
       <header className='main-header'>
         <img onClick={() => props.history.push('/')} src={logo} alt='Mountains Logo'/>
@@ -78,7 +86,7 @@ const Header = (props) => {
         </nav>
       </header>
     );
-  }
-};
+  } 
+}
 
 export default withRouter(Header);
