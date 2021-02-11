@@ -5,10 +5,7 @@
     height: 100px;
     width: 100vw;
     background-color: black;
-}
-
-.mobile-dropdown{
-    display: none;
+    position: fixed;
 }
 
 header img {
@@ -81,6 +78,7 @@ header h1 {
 
     .main-header h1{
         font-size: 30px;
+        margin-left: 100px;
     }
 
     .main-header img{

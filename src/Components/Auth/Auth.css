@@ -4,6 +4,7 @@
     align-items: center;
     width: 100vw;
     height: 80vh;
+    padding-top: 50px;
 }
 
 #login-header{
@@ -33,12 +34,59 @@ span{
 .register{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 #register-header{
     font-size: 60px;
+    margin-bottom: 25px;
 }
 
 .register button {
     margin-top: 40px;
+}
+
+@media (max-width: 1370){
+    .login-form{
+
+    }
+}
+
+@media (max-width: 500px){
+    #login-header{
+        font-size: 35px;
+        padding-top: 0px;
+    }
+
+    .login-form input{
+        width: 300px;
+        margin-bottom: 5px;
+    }
+    
+    .login-form button{
+        width: 300px;
+        margin-bottom: 10px;
+    }
+
+    .login-form p{
+        margin-top: 10px;
+    }
+
+    .register{
+        align-items: center;
+        padding-top: 75px;
+    }
+
+    #register-header{
+        font-size: 35px;
+    }
+
+    .register input{
+        width: 300px;
+        margin-bottom: 0px;
+    }
+
+    .register button{
+        width: 300px;
+    }
 }

@@ -22,6 +22,7 @@
 
 .rental-history-header{
     font-size: 40px;
+    margin-top: 150px;
 }
 
 .equipment{
@@ -122,4 +123,150 @@
 
 .admin-view button{
     width: 450px;
+}
+
+.admin-view{
+    margin-top: 110px;
+}
+
+@media (max-width: 1730px){
+    .admin-view{
+        margin-left: 50px;
+    }
+}
+
+@media (max-width: 1570px){
+    .rental-history{
+        margin-left: 150px;
+    }
+
+    .account-information{
+        right: 350px;
+    }
+
+    .email-edit{
+        right: 350px;
+    }
+
+    .password-edit{
+        right: 350px;
+    }
+}
+
+@media (max-width: 1270px){
+    .rental-history{
+        width: 300px;
+        margin-left: 75px;
+    }
+
+    .admin-view{
+        
+    }
+
+    .account-information{
+        right: 200px;
+        width: 30vw;
+    }
+
+    .password-edit{
+        right: 175px;
+    }
+
+    .password-edit input{
+        width: 300px;
+    }
+
+    .password-edit button{
+            width: 300px;
+    }
+
+    .account-information h4{
+        font-size: 20px;
+    }
+
+    .email-edit{
+        margin-top: 175px;
+        right: 200px;
+    }
+
+    #email-address{
+        font-size: 30px;
+    }
+
+    .updates{
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 500px){
+    .rental-page{
+        display: flex;
+        flex-direction: column;
+        height: 200vh;
+        justify-content: space-around;
+    }
+
+    .account-information{
+        padding-bottom: 0px;
+    }
+
+    .account-information button{
+        margin-top: 10px;
+    }
+
+    .account-information h3{
+        font-size: 25px;
+    }
+
+    .account-information h4{
+        font-size: 20px;
+    }
+
+    .updates{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    #email-address{
+        margin-top: 10px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .rental-history{
+        margin-top: 750px;
+        height: 200vh;
+        padding-bottom: 100px;
+        padding-top: 10px;
+    }
+
+    .rental-history-header{
+        margin-top: 0px;
+    }
+
+    .password-edit{
+        margin-top: 50px;
+        right: 100px;
+        position: absolute;
+        top: 500px;
+    }
+
+    .password-edit input{
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+
+    .password-edit button{
+        margin-top: 5px;
+        margin-bottom: 15px;
+    }
+
+    .email-edit{
+        right: 50px;
+        top: 0px;
+    }
+
+    #email-address-edit{
+        font-size: 30px;
+    }
 }

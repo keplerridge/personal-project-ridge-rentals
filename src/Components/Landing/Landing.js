@@ -1,12 +1,13 @@
 import {Component} from 'react';
-import './background.jpg'
-import './Landing.css'
+import Logo from './bobby.jpg';
+import './Landing.css';
 
 class Landing extends Component {
     render(){
         return(
             <div className='landing'>
-                <article className='intro'>At   Ridge Rentals we strive to provide top of the line equipment in great condition. Our products are inspected and ready to go every time you make a reservation.</article>
+                <article className='intro'>Bobby started Ridge Rentals as a way to provide quality equipment at a fair rate. Bobby uses this same equipment in his work as a contractor/owner of <a className='link' href='https://www.facebook.com/builtbyridge' target='_blank' rel='noreferrer'>Ridge Renovation and Construction</a> so it is always well maintined and ready for use.</article>
+                <img id='image' src={Logo} alt='Company Owner' />
             </div>
         )
     }

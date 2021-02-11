@@ -162,14 +162,14 @@ const Profile = props => {
                                 value={equipmentId}
                                 placeholder='Equipment ID'
                                 onChange={e => setEquipmentId(e.target.value)} />
-                            <button onClick={() => addToRentalHistory()}>Add to Rental Profile</button>
+                            <button onClick={() => addToRentalHistory()}>Add to Rental Profile</button>                        
                         </section>
                     )}
                 {editView
                 ? (
                     <div className='email-edit'>
                         <h4 id='edit-email-header'>Change Email Address</h4>
-                        <p id='email-address'>{props.user.email}</p>
+                        <p id='email-address-edit'>{props.user.email}</p>
                         <input
                                 id='edit-input'
                                 value={email}
@@ -186,6 +186,8 @@ const Profile = props => {
                 ) : (
                     <div className='account-information'>
                         <h3>Account Information</h3>
+                        <h4>User ID</h4>
+                        <p id='email-address'>{props.user.user_id}</p>
                         <h4>Account Email Address</h4>
                         <p id='email-address'>{props.user.email}</p>
                         <p className='updates'>Click Here to <span onClick={() => editViews()}>Change Email</span></p>

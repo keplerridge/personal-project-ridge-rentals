@@ -1,21 +1,115 @@
 .landing{
+    display: flex;
     height: 85vh;
     width: 100vw;
     box-sizing: border-box;
     margin: 0px;
     border-width: 0px;
     padding: 0px;
+    position: fixed;
+    overflow-y: scroll;
+    flex-wrap: wrap;
+    z-index: -1;
 }
 
 .intro{
     width: 30vw;
-    display: flex;
+    display: inline;
     flex-wrap: wrap;
-    height: 30vh;
+    height: 60vh;
     font-size: 40px;
     font-weight: bold;
     position: absolute;
-    left: 50px;
-    top: 125px;
+    left: 200px;
+    top: 150px;
     color: #39B2A7;
+    overflow-y: scroll;
+    padding: 0px;
+}
+
+.link{
+    display: inline;
+    margin: 0px;
+    padding: 0px;
+}
+
+.intro a{
+    text-decoration: none;
+    color: #39B2A7;
+}
+
+#image{
+    height: 500px;
+    width: 500px;
+    object-fit: cover;
+    position: absolute;
+    right: 200px;
+    top: 150px;
+}
+
+@media (max-width: 1270px){
+    .intro{
+        left: 100px;
+        top: 200px;
+        font-size: 30px;
+    }
+
+    #image{
+        right: 200px;
+        height: 350px;
+        width: 350px;
+        top: 250px;
+    }
+}
+
+@media (max-width: 930px){
+    .landing{
+        display: block;
+        flex-direction: column;
+        overflow-y: scroll;
+        height: 80vh;
+        align-items: center;
+        width: 90vw;
+        margin-right: 10vw;
+        margin-top: 125px;
+        flex-wrap: nowrap;
+    }
+
+    .intro{
+        position: unset;
+        width: 400px;
+        margin-left: 200px;
+    }
+
+    #image{
+        position: unset;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 500px){
+    .landing{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+    }
+    
+    .intro{
+        font-size: 20px;
+        width: 90vw;
+        height: 20vh;
+        margin-right: 0px;
+        margin-left: 0px;
+        margin-top: 20px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #image{
+        height: 350px;
+        width: 350px;
+        padding-top: 50px;
+    }
 }
