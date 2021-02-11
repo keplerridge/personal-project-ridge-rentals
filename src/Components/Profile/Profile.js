@@ -193,9 +193,28 @@ const Profile = props => {
                         <p className='updates'>Click Here to <span onClick={() => editViews()}>Change Email</span></p>
                         <p className='updates'>Click Here to <span onClick={() => passwordEditView()}>Update Password</span></p>
                         <button id='logout' onClick={() => logout()}>Logout</button>
+                        {!passwordEdit
+                            ? (
+                                null
+                            ) : (
+                                <section className='password-edit'>
+                                    <input
+                                        value={newPassword}
+                                        type='password'
+                                        placeholder='New Password'
+                                        onChange={e => setNewPassword(e.target.value)} />
+                                    <input
+                                        value={verNewPassword}
+                                        type='password'
+                                        placeholder='Confirm New Password'
+                                     onChange={e => setVerNewPassword(e.target.value)} />
+                                    <button onClick={() => updatePassword()}>Update Password</button>
+                                    <button onClick={() => passwordEditView()}>BACK</button>
+                                </section>
+                        )}
                     </div>
                 )}
-                {!passwordEdit
+                {/* {!passwordEdit
                 ? (
                     null
                 ) : (
@@ -213,7 +232,7 @@ const Profile = props => {
                         <button onClick={() => updatePassword()}>Update Password</button>
                         <button onClick={() => passwordEditView()}>BACK</button>
                     </section>
-                )}
+                )} */}
             </div>
         )
     }

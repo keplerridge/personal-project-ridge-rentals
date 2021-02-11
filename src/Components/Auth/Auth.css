@@ -55,7 +55,7 @@ span{
 @media (max-width: 500px){
     #login-header{
         font-size: 35px;
-        padding-top: 0px;
+        padding-top: 70px;
     }
 
     .login-form input{

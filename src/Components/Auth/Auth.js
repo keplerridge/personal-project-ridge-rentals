@@ -24,7 +24,7 @@ const Auth = props => {
             .then(res => {
                 props.getUser(res.data)
                 console.log(props.user)
-                props.history.push('/')
+                props.history.push('/profile')
             })
             .catch(err => {
                 console.log(err)
@@ -55,6 +55,7 @@ const Auth = props => {
 
         return(
             <div>
+                {console.log(props)}
                 <section className='form-container'>
                     {registerView 
                     ? (

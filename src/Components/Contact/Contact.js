@@ -36,13 +36,13 @@ const sendEmail = () => {
 
     return(
             <div className='page'>
-                <section>
+                <section className='top'>
                     <h2>To contact us, please call, text, or email</h2>
                     <p id='email-header'>EMAIL: ridgerentals@hotmail.com</p>
                     <p id='phone'>PHONE: (480) 201-3721</p>
                 </section>
                 <section className='email-form'>
-                    <h2>You may also message us here and<br></br>we will get back to you as soon as possible</h2>
+                    <h2>You may also fill out this form<br></br>and message use here</h2>
                     <form className='form'>
                         <section id='name-input'>
                             <label for='firstname'>First Name: </label>
@@ -53,7 +53,7 @@ const sendEmail = () => {
                         <section id='email-subject'>
                             <label for='email'>Email: </label>
                             <input value={email} type='text' onChange={e => setEmail(e.target.value)} />
-                            <label for='subject'>Subject: </label>
+                            <label id='subject' for='subject'>Subject: </label>
                             <input value={subject} type='text' onChange={e => setSubject(e.target.value)} />
                         </section>
                         <section id='message-area'>

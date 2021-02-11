@@ -17,7 +17,7 @@
     display: inline;
     flex-wrap: wrap;
     height: 60vh;
-    font-size: 40px;
+    font-size: 34px;
     font-weight: bold;
     position: absolute;
     left: 200px;
@@ -39,7 +39,7 @@
 }
 
 #image{
-    height: 500px;
+    height: 400px;
     width: 500px;
     object-fit: cover;
     position: absolute;
@@ -69,6 +69,7 @@
         overflow-y: scroll;
         height: 80vh;
         align-items: center;
+        justify-content: center;
         width: 90vw;
         margin-right: 10vw;
         margin-top: 125px;
@@ -78,7 +79,7 @@
     .intro{
         position: unset;
         width: 400px;
-        margin-left: 200px;
+        margin-left: 0px;
     }
 
     #image{

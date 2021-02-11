@@ -1,7 +1,7 @@
 .rental-page{
     display: flex;
     flex-direction: row;
-    height: 88vh;
+    height: 150vh;
     width: 100vw;
     overflow-y: scroll;
 }
@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: center;
     overflow-y: scroll;
-    height: 85vh;
+    height: 150vh;
     width: 35vw;
     text-align: center;
     margin-left: 250px;
@@ -22,7 +22,7 @@
 
 .rental-history-header{
     font-size: 40px;
-    margin-top: 150px;
+    margin-top: 125px;
 }
 
 .equipment{
@@ -45,10 +45,13 @@
     position: absolute;
     right: 450px;
     top: 100px;
+    height: 150vh;
+    overflow-y: scroll;
 }
 
 .account-information h3{
     font-size: 40px;
+    margin-bottom: 10px;
 }
 
 .account-information h4{
@@ -58,7 +61,7 @@
 
 #email-address{
     font-size: 25px;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .updates{
@@ -74,7 +77,9 @@
     flex-direction: column;
     position: absolute;
     right: 430px;
+    height: 200vh;
     align-items: center;
+    overflow-y: scroll;
 }
 
 #edit-email-header{
@@ -101,7 +106,7 @@
     position: absolute;
     bottom: 20px;
     right: 430px;
-    margin-bottom: 100px;
+    margin-bottom: -275px;
     align-items: center;
 }
 
@@ -133,6 +138,10 @@
     .admin-view{
         margin-left: 50px;
     }
+
+    /* .password-edit{
+        margin-top: 600px;
+    } */
 }
 
 @media (max-width: 1570px){
@@ -146,10 +155,12 @@
 
     .email-edit{
         right: 350px;
+        margin-top: 100px;
     }
 
     .password-edit{
-        right: 350px;
+        right: -15px;
+        padding-bottom: 400px;
     }
 }
 
