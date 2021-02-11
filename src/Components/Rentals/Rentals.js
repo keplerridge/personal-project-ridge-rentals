@@ -83,6 +83,7 @@ const Rentals = props => {
     }
         return(
             <section className='rentals-container'>
+                {props.user.admin = true}
                 {!props.user.admin
                     ? (
                          <section className='image-container'>
@@ -96,8 +97,8 @@ const Rentals = props => {
                                 ))}
                          </section> 
                     ) : (
-                        <section>
-                            <h1>Add New Equipment Here</h1>
+                        <section className='admin-view'>
+                            <h1 id='dropzone-header'>Add New Equipment Here</h1>
                             <Dropzone
                                 onDropAccepted={(file) => getSignedRequest(file)}
                                 accept="image/*"
@@ -130,9 +131,9 @@ const Rentals = props => {
                                 placeholder='Equipment Description'
                                 onChange={e => setDescription(e.target.value)} />
                             <section>
-                                {equipment.map(equipment => (
+                            {equipment.map(equipment => (
                                 <div key={equipment.equipment_id}>
-                                    <img src ={equipment.equipment_picture} alt={equipment.name} />
+                                    <img className='images' src ={equipment.equipment_picture} alt={equipment.name} />
                                     <p>{equipment.name}</p>
                                     <p className='description'>{equipment.equipment_description}</p>
                                 </div>
