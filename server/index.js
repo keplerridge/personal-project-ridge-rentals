@@ -7,7 +7,7 @@ const express = require('express'),
       authCtrl = require('./controllers/authController'),
       mainCtrl = require('./controllers/mainController'),
       emailCtrl = require('./controllers/emailController'),
-      {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY} = process.env;
+      {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, S3_BUCKET, AMAZON_ACCESS_KEY_ID, AMAZON_SECRET_ACCESS_KEY} = process.env;
 
 app.use(express.json());
 app.use(session({
@@ -31,8 +31,8 @@ massive({
 app.get('/auth/signs3', (req, res) => {
     aws.config = {
         region: 'us-west-1',
-        accessKeyId: AWS_ACCESS_KEY_ID,
-        secretAccessKey: AWS_SECRET_ACCESS_KEY,
+        accessKeyId: AMAZON_ACCESS_KEY_ID,
+        secretAccessKey: AMAZON_SECRET_ACCESS_KEY,
     };
 
 const s3 = new aws.S3(),
