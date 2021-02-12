@@ -23,12 +23,12 @@ const sendEmail = () => {
     } else {
         axios.post('/auth/email', {firstName, lastName, subject, email, message})
         .then(() => {
+            alert('Message Sent!')
             setFirstName('')
             setLastName('')
             setEmail('')
             setSubject('')
             setMessage('')
-            alert('Message Sent!')
         })
         .catch(err => console.log(err))
     }
