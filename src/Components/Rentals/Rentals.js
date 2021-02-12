@@ -13,7 +13,7 @@ const Rentals = props => {
           [description, setDescription] = useState(''),
           [isUploading, setIsUploading] = useState(false),
           [imgUrl, setImgUrl] = useState('');
-
+ 
     useEffect(() => {
         getRentals();
     }, [])

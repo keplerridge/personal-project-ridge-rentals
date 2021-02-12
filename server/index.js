@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express'),
       app = express(),
+      path = require('path'),
       massive = require('massive'),
       session = require('express-session'),
       aws = require('aws-sdk'),
@@ -59,6 +60,7 @@ s3.getSignedUrl('putObject', s3Params, (err, data) => {
   });
 });
 
+
 //Authentication Endpoints
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/registeradmin', authCtrl.registerAdmin);
@@ -78,3 +80,9 @@ app.post('/auth/addhistory', mainCtrl.addToRentalHistory);
 
 //email
 app.post('/auth/email', emailCtrl.sendEmail);
+
+app.use(express.static(__dirname + '/../build'));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+});
