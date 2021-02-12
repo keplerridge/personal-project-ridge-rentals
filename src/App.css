@@ -30,3 +30,7 @@ button{
   letter-spacing: 4px;
   cursor: pointer;
 }
+
+body{
+  overflow-y: scroll;
+}

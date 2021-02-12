@@ -83,7 +83,6 @@ const Rentals = props => {
     }
         return(
             <section className='rentals-container'>
-                {props.user.admin = true}
                 {!props.user.admin
                     ? (
                          <section className='image-container'>

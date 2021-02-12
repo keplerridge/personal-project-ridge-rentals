@@ -1,7 +1,7 @@
-.rental-page{
+.profile-page{
     display: flex;
     flex-direction: row;
-    height: 150vh;
+    height: 200vh;
     width: 100vw;
     overflow-y: scroll;
 }
@@ -16,7 +16,7 @@
     height: 150vh;
     width: 35vw;
     text-align: center;
-    margin-left: 250px;
+    margin-left: 150px;
     overflow-x: hidden;
 }
 
@@ -33,8 +33,6 @@
 }
 
 .equipment p{
-    margin-top: 2px;
-    margin-bottom: 2px;
     margin: 2px 5px 2px 5px;
 }
 
@@ -43,7 +41,7 @@
     flex-direction: column;
     align-items: center;
     position: absolute;
-    right: 450px;
+    right: 250px;
     top: 100px;
     height: 150vh;
     overflow-y: scroll;
@@ -76,7 +74,8 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    right: 430px;
+    top: 100px;
+    right: 250px;
     height: 200vh;
     align-items: center;
     overflow-y: scroll;
@@ -104,9 +103,7 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    bottom: 20px;
-    right: 430px;
-    margin-bottom: -275px;
+    top: 550px;
     align-items: center;
 }
 
@@ -115,7 +112,7 @@
 }
 
 .admin-view{
-    margin-left: 250px;
+    margin-left: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -134,150 +131,152 @@
     margin-top: 110px;
 }
 
-@media (max-width: 1730px){
-    .admin-view{
+@media (max-width: 1025px){
+    .account-information{
+        right: 15vw;
+    }
+
+    .email-edit{
+        right: 15vw;
+    }
+
+    .rental-history{
         margin-left: 50px;
     }
-
-    /* .password-edit{
-        margin-top: 600px;
-    } */
 }
 
-@media (max-width: 1570px){
-    .rental-history{
-        margin-left: 150px;
-    }
-
-    .account-information{
-        right: 350px;
-    }
-
+@media (max-width: 770px){
     .email-edit{
-        right: 350px;
-        margin-top: 100px;
-    }
-
-    .password-edit{
-        right: -15px;
-        padding-bottom: 400px;
-    }
-}
-
-@media (max-width: 1270px){
-    .rental-history{
-        width: 300px;
-        margin-left: 75px;
-    }
-
-    .admin-view{
-        
-    }
-
-    .account-information{
-        right: 200px;
-        width: 30vw;
-    }
-
-    .password-edit{
-        right: 175px;
-    }
-
-    .password-edit input{
-        width: 300px;
-    }
-
-    .password-edit button{
-            width: 300px;
-    }
-
-    .account-information h4{
-        font-size: 20px;
-    }
-
-    .email-edit{
-        margin-top: 175px;
-        right: 200px;
-    }
-
-    #email-address{
-        font-size: 30px;
-    }
-
-    .updates{
-        font-size: 15px;
-    }
+        right: 10vw;
+    }   
 }
 
 @media (max-width: 500px){
-    .rental-page{
-        display: flex;
+    .profile-page{
         flex-direction: column;
-        height: 200vh;
-        justify-content: space-around;
+        align-items: center;
+        width: 100vw;
+        height: 175vh;
+        margin: 0px;
+        justify-self: center;
+        overflow-y: scroll;
     }
 
     .account-information{
-        padding-bottom: 0px;
-    }
-
-    .account-information button{
-        margin-top: 10px;
-    }
-
-    .account-information h3{
-        font-size: 25px;
-    }
-
-    .account-information h4{
-        font-size: 20px;
+        position: absolute;
+        width: 100vw;
+        top: 70px;
+        margin: 0px;
+        height: 60vh;
+        right: unset;
     }
 
     .updates{
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 1.5px;
+        margin-bottom: 1.5px;
+    }
+
+    #account-info-header{
+        font-size: 25px;
     }
 
     #email-address{
+        font-size: 18px;
+        margin-top: 1.5px;
+        margin-bottom: 1.5px;
+    }
+
+    #email-id-header{
+        font-size: 22px;
+    }
+
+    #logout{
+        width: 325px;
         margin-top: 10px;
-        font-size: 15px;
-        font-weight: bold;
-    }
-
-    .rental-history{
-        margin-top: 750px;
-        height: 200vh;
-        padding-bottom: 100px;
-        padding-top: 10px;
-    }
-
-    .rental-history-header{
-        margin-top: 0px;
-    }
-
-    .password-edit{
-        margin-top: 50px;
-        right: 100px;
-        position: absolute;
-        top: 500px;
-    }
-
-    .password-edit input{
-        margin-top: 0px;
-        margin-bottom: 10px;
-    }
-
-    .password-edit button{
-        margin-top: 5px;
-        margin-bottom: 15px;
     }
 
     .email-edit{
-        right: 50px;
-        top: 0px;
+        align-items: center;
+        margin: 0px;
+        padding: 0px;
+        height: 50vh;
+        right: 0px;
     }
 
-    #email-address-edit{
-        font-size: 30px;
+    #edit-email-header{
+        font-size: 25px;
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+
+    #edit-input{
+        width: 325px;
+    }
+
+    #bottom-edit-input{
+        width: 325px;
+    }
+
+    .email-edit button{
+        width: 325px;
+    }
+
+    .password-edit{
+        position: absolute;
+        margin: 0px;
+        padding: 0px;
+        top: 275px;
+        z-index: 3;
+    }
+
+    .password-edit input{
+        width: 325px;
+        margin-top: 5px;
+        margin-bottom: 2px;
+    }
+
+    #edit-button-top{
+        margin-bottom: 2.5px;
+        width: 325px;
+    }
+
+    #edit-button-bottom{
+        margin-top: 2.5px;
+        width: 325px;
+    }
+
+    .rental-history{
+        position: unset;
+        flex-direction: column;
+        width: 80vw;
+        height: 100vh;
+        margin-right: 0px;
+        overflow-y: scroll;
+        align-items: center;
+        padding-top: 450px;
+        flex-wrap: nowrap;
+        margin-left: 0px;
+        justify-content: center;
+    }
+
+    .equipment p{
+        height: unset;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        font-size: 12px;
+        overflow: hidden;
+    }
+
+    .equipment{
+        display: inline;
+        height: 70px;
+        width: 325px;
+        font-size: 10px;
+        overflow-y: hidden;
+    }
+
+    .rental-history-header{
+        font-size: 25px;
     }
 }

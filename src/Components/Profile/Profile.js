@@ -124,7 +124,7 @@ const Profile = props => {
     }
 
         return(
-            <div className='rental-page'>
+            <div className='profile-page'>
                     {!admin ? (
                         <section className='rental-history'>
                             <h3 className='rental-history-header'>YOUR RENTAL HISTORY</h3>
@@ -185,10 +185,10 @@ const Profile = props => {
                     </div>
                 ) : (
                     <div className='account-information'>
-                        <h3>Account Information</h3>
-                        <h4>User ID</h4>
+                        <h3 id='account-info-header'>Account Information</h3>
+                        <h4 id='email-id-header'>User ID</h4>
                         <p id='email-address'>{props.user.user_id}</p>
-                        <h4>Account Email Address</h4>
+                        <h4 id='email-id-header'>Account Email Address</h4>
                         <p id='email-address'>{props.user.email}</p>
                         <p className='updates'>Click Here to <span onClick={() => editViews()}>Change Email</span></p>
                         <p className='updates'>Click Here to <span onClick={() => passwordEditView()}>Update Password</span></p>
@@ -208,31 +208,12 @@ const Profile = props => {
                                         type='password'
                                         placeholder='Confirm New Password'
                                      onChange={e => setVerNewPassword(e.target.value)} />
-                                    <button onClick={() => updatePassword()}>Update Password</button>
-                                    <button onClick={() => passwordEditView()}>BACK</button>
+                                    <button id='edit-button-top' onClick={() => updatePassword()}>Update Password</button>
+                                    <button id='edit-button-bottom' onClick={() => passwordEditView()}>BACK</button>
                                 </section>
                         )}
                     </div>
                 )}
-                {/* {!passwordEdit
-                ? (
-                    null
-                ) : (
-                    <section className='password-edit'>
-                        <input
-                            value={newPassword}
-                            type='password'
-                            placeholder='New Password'
-                            onChange={e => setNewPassword(e.target.value)} />
-                        <input
-                            value={verNewPassword}
-                            type='password'
-                            placeholder='Confirm New Password'
-                            onChange={e => setVerNewPassword(e.target.value)} />
-                        <button onClick={() => updatePassword()}>Update Password</button>
-                        <button onClick={() => passwordEditView()}>BACK</button>
-                    </section>
-                )} */}
             </div>
         )
     }
