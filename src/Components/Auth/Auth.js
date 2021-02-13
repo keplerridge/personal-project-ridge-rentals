@@ -13,7 +13,7 @@ const Auth = props => {
 
     useEffect(() => {
         if(props.user.user_id){
-            props.history.push('/')
+            props.history.push('/profile')
         }
     }, [props])
 

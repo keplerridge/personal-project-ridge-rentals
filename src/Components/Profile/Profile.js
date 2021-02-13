@@ -22,7 +22,7 @@ const Profile = props => {
   useEffect(() => {
       setAdmin(props.user.admin)
       if(!props.user.email){
-            props.history.push('/')
+            props.history.push('/auth')
             alert('Plese login or register to view your profile')
         } else if (!admin) {
             axios.get(`/auth/history/${props.user.user_id}`)
