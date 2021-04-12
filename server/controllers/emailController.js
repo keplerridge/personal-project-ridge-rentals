@@ -1,6 +1,6 @@
 require('dotenv').config();
 const nodemailer = require('nodemailer'),
-      {EMAIL_PASSWORD, EMAIL_USERNAME} = process.env;
+      {EMAIL_USERNAME} = process.env;
 
 module.exports = {
     sendEmail: async(req, res) => {
@@ -12,7 +12,6 @@ module.exports = {
             secure: false, // false for TLS - as a boolean not string - but the default is false so just remove this completely
             auth: {
                 user: `${EMAIL_USERNAME}`,
-                pass: `${EMAIL_PASSWORD}`
             },
         });
 
